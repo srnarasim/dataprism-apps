@@ -1,0 +1,58 @@
+{
+  "name": "@dataprism/apps",
+  "version": "1.0.0",
+  "description": "DataPrism Demo Applications, Documentation, and Marketplace",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:demo && npm run build:docs && npm run build:marketplace",
+    "build:demo": "cd apps/demo-analytics && npm run build",
+    "build:docs": "cd apps/docs && npm run build",
+    "build:marketplace": "echo 'Marketplace build not implemented yet'",
+    "test": "npm run test:demo && npm run test:docs && npm run test:marketplace",
+    "test:demo": "cd demo && npm run test",
+    "test:docs": "cd docs && npm run test",
+    "test:marketplace": "cd marketplace && npm run test",
+    "test:e2e:demo": "playwright test tests/demo",
+    "test:registry": "vitest run tests/registry",
+    "validate:docs": "node scripts/validate-docs.js",
+    "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings 0",
+    "type-check": "tsc --noEmit",
+    "dev:demo": "cd demo && npm run dev",
+    "dev:docs": "cd docs && npm run dev",
+    "dev:marketplace": "cd marketplace && npm run dev",
+    "deploy:docs": "cd docs && npm run deploy",
+    "clean": "rm -rf demo/dist docs/dist marketplace/dist"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vitepress": "^1.0.0",
+    "vue": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@playwright/test": "^1.40.0",
+    "typescript": "^5.2.0",
+    "vite": "^5.4.8",
+    "vitest": "^1.6.0",
+    "eslint": "^8.50.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0"
+  },
+  "keywords": [
+    "demo",
+    "documentation",
+    "marketplace",
+    "examples",
+    "applications"
+  ],
+  "author": "DataPrism Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srnarasim/dataprism-apps.git"
+  }
+}
