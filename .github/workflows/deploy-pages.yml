@@ -1,0 +1,174 @@
+name: Deploy Documentation to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Install demo dependencies
+        run: cd apps/demo-analytics && npm install
+        
+      - name: Install docs dependencies
+        run: cd apps/docs && npm install
+        
+      - name: Build demo application
+        run: npm run build:demo
+        
+      - name: Build documentation
+        run: npm run build:docs
+        
+      - name: Create GitHub Pages deployment
+        run: |
+          mkdir -p dist
+          
+          # Copy documentation (VitePress output)
+          cp -r apps/docs/.vitepress/dist/* dist/
+          
+          # Copy demo application to /demo subdirectory
+          mkdir -p dist/demo
+          cp -r apps/demo-analytics/dist/* dist/demo/
+          
+          # Create landing page that combines both
+          cat > dist/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>DataPrism Documentation & Demo</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                  body { 
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                      margin: 0; padding: 0; background: #f8fafc;
+                  }
+                  .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+                  .header { text-align: center; margin-bottom: 60px; }
+                  .header h1 { font-size: 3em; margin: 0; color: #1a202c; }
+                  .header p { font-size: 1.2em; color: #718096; margin: 20px 0; }
+                  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
+                  .card { 
+                      background: white; border-radius: 12px; padding: 30px; 
+                      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+                      transition: transform 0.2s, box-shadow 0.2s;
+                  }
+                  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+                  .card h2 { margin-top: 0; color: #2d3748; }
+                  .card p { color: #718096; line-height: 1.6; }
+                  .card a { 
+                      display: inline-block; margin-top: 20px; padding: 12px 24px; 
+                      background: #3182ce; color: white; text-decoration: none; 
+                      border-radius: 6px; transition: background 0.2s;
+                  }
+                  .card a:hover { background: #2c5282; }
+                  .demo-card { border-left: 4px solid #38a169; }
+                  .docs-card { border-left: 4px solid #3182ce; }
+                  .links-card { border-left: 4px solid #805ad5; }
+                  .features { background: white; border-radius: 12px; padding: 30px; margin: 40px 0; }
+                  .features h2 { color: #2d3748; margin-top: 0; }
+                  .features ul { list-style: none; padding: 0; }
+                  .features li { padding: 8px 0; color: #718096; }
+                  .features li:before { content: "✓"; color: #38a169; font-weight: bold; margin-right: 10px; }
+                  .version { text-align: center; color: #a0aec0; font-size: 0.9em; margin-top: 40px; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <div class="header">
+                      <h1>DataPrism</h1>
+                      <p>High-performance browser-based analytics with WebAssembly and intelligent plugins</p>
+                  </div>
+                  
+                  <div class="cards">
+                      <div class="card demo-card">
+                          <h2>🚀 Live Demo</h2>
+                          <p>Experience DataPrism in action with our interactive demo application. 
+                             Explore data analysis capabilities, visualization tools, and plugin integrations.</p>
+                          <a href="./demo/">Launch Demo</a>
+                      </div>
+                      
+                      <div class="card docs-card">
+                          <h2>📚 Documentation</h2>
+                          <p>Comprehensive guides, API references, and tutorials for getting started 
+                             with DataPrism development and integration.</p>
+                          <a href="./guide/">View Documentation</a>
+                      </div>
+                      
+                      <div class="card links-card">
+                          <h2>🔗 Resources</h2>
+                          <p>Access source code, plugin bundles, and additional resources for 
+                             building with DataPrism.</p>
+                          <div style="margin-top: 20px;">
+                              <a href="https://github.com/srnarasim/dataprism-core" style="margin-right: 10px;">Core Engine</a>
+                              <a href="https://github.com/srnarasim/dataprism-plugins">Plugins</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="features">
+                      <h2>Key Features</h2>
+                      <ul>
+                          <li>WebAssembly-powered analytics engine with DuckDB integration</li>
+                          <li>Real-time data processing and visualization</li>
+                          <li>Extensible plugin architecture for custom functionality</li>
+                          <li>TypeScript orchestration layer for seamless integration</li>
+                          <li>Browser-native performance with memory-efficient processing</li>
+                          <li>AI-powered data insights and intelligent clustering</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="version">
+                      Built from commit: <code>${{ github.sha }}</code> | 
+                      <a href="https://github.com/srnarasim/dataprism-apps">Source Code</a>
+                  </div>
+              </div>
+          </body>
+          </html>
+          EOF
+          
+          # Create .nojekyll to ensure GitHub Pages serves all files
+          touch dist/.nojekyll
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        with:
+          enablement: true
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
