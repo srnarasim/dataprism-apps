@@ -34,7 +34,7 @@ const engine = new DataPrismEngine({
 ```javascript
 // Use multiple CDN sources
 const cdnSources = [
-    'https://srnarasim.github.io/DataPrism/dataprism.min.js',
+    'https://srnarasim.github.io/dataprism.min.js',
     'https://cdn.jsdelivr.net/npm/@dataprism/core@latest/dist/dataprism.min.js',
     'https://unpkg.com/@dataprism/core@latest/dist/dataprism.min.js'
 ];
@@ -415,8 +415,8 @@ monitor.on('memory-warning', (stats) => {
 
 ### Getting Help
 
-1. **GitHub Issues**: [Report bugs and request features](https://github.com/srnarasim/DataPrism/issues)
-2. **Discussions**: [Community support](https://github.com/srnarasim/DataPrism/discussions)
+1. **GitHub Issues**: [Report bugs and request features](https://github.com/srnarasim/issues)
+2. **Discussions**: [Community support](https://github.com/srnarasim/discussions)
 3. **Documentation**: [Complete documentation](/guide/)
 4. **Examples**: [Code examples](/examples/)
 
@@ -433,8 +433,8 @@ When reporting issues, please include:
 
 ### Contributing
 
-- [Contributing Guide](https://github.com/srnarasim/DataPrism/blob/main/CONTRIBUTING.md)
-- [Code of Conduct](https://github.com/srnarasim/DataPrism/blob/main/CODE_OF_CONDUCT.md)
+- [Contributing Guide](https://github.com/srnarasim/blob/main/CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/srnarasim/blob/main/CODE_OF_CONDUCT.md)
 - [Development Setup](/guide/development)
 
 ## Next Steps

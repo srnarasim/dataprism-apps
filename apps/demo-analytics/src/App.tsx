@@ -2,8 +2,8 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Layout } from "./components/Layout";
-import { LoadingScreen } from "./components/LoadingScreen";
-import { useDataPrism } from "./contexts/DataPrismContext";
+import { CDNLoadingScreen } from "./components/CDNLoadingScreen";
+import { useDataPrism } from "./contexts/DataPrismCDNContext";
 
 // Lazy load pages for better performance
 const HomePage = React.lazy(() => import("./pages/HomePage"));
@@ -19,12 +19,12 @@ function App() {
 
   // Show loading screen while DataPrism engine initializes
   if (!isInitialized && !initializationError) {
-    return <LoadingScreen />;
+    return <CDNLoadingScreen />;
   }
 
   return (
     <Layout>
-      <React.Suspense fallback={<LoadingScreen />}>
+      <React.Suspense fallback={<CDNLoadingScreen />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/explorer" element={<DataExplorerPage />} />

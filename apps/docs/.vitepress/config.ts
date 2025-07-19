@@ -5,7 +5,7 @@ export default defineConfig({
   title: "DataPrism Core",
   description:
     "High-performance browser-based analytics engine with WebAssembly",
-  base: "/DataPrism/",
+  base: "/",
 
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
@@ -18,10 +18,10 @@ export default defineConfig({
       "meta",
       {
         property: "og:image",
-        content: "https://srnarasim.github.io/DataPrism/og-image.png",
+        content: "https://srnarasim.github.io/dataprism-apps/og-image.png",
       },
     ],
-    ["meta", { property: "og:url", content: "https://srnarasim.github.io/DataPrism/" }],
+    ["meta", { property: "og:url", content: "https://srnarasim.github.io/dataprism-apps/" }],
     // Required for WebAssembly
     [
       "meta",
@@ -45,7 +45,7 @@ export default defineConfig({
         text: "Links",
         items: [
           { text: "Demo", link: "https://demo.dataprism.dev" },
-          { text: "GitHub", link: "https://github.com/srnarasim/DataPrism" },
+          { text: "GitHub", link: "https://github.com/srnarasim/dataprism-apps" },
           {
             text: "NPM",
             link: "https://www.npmjs.com/package/@dataprism/core",
@@ -199,7 +199,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/srnarasim/DataPrism" },
+      { icon: "github", link: "https://github.com/srnarasim/dataprism-apps" },
     ],
 
     footer: {
@@ -208,7 +208,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: "https://github.com/srnarasim/DataPrism/edit/main/apps/docs/:path",
+      pattern: "https://github.com/srnarasim/dataprism-apps/edit/main/apps/docs/:path",
       text: "Edit this page on GitHub",
     },
 
@@ -284,6 +284,6 @@ export default defineConfig({
   ignoreDeadLinks: true,
 
   sitemap: {
-    hostname: "https://srnarasim.github.io/DataPrism",
+    hostname: "https://srnarasim.github.io/dataprism-apps",
   },
 });

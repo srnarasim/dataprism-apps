@@ -7,8 +7,8 @@ Welcome to the comprehensive guide for DataPrism plugins! This documentation cov
 Get started with DataPrism plugins in minutes:
 
 ```javascript
-import { DataPrismEngine } from "https://srnarasim.github.io/DataPrism/dataprism.min.js";
-import { createVisualizationPlugin } from "https://srnarasim.github.io/DataPrism/dataprism-plugins.min.js";
+import { DataPrismEngine } from "https://srnarasim.github.io/dataprism.min.js";
+import { createVisualizationPlugin } from "https://srnarasim.github.io/dataprism-plugins.min.js";
 
 const engine = new DataPrismEngine();
 const chartsPlugin = await createVisualizationPlugin("observable-charts");
@@ -110,12 +110,12 @@ Simply describe what you want your plugin to do, and our AI will generate a comp
 ## 🆘 Need Help?
 
 - **[FAQ](./troubleshooting/)** - Common questions and solutions
-- **[GitHub Issues](https://github.com/srnarasim/DataPrism/issues)** - Report bugs and request features
-- **[Community Discussions](https://github.com/srnarasim/DataPrism/discussions)** - Get help from the community
+- **[GitHub Issues](https://github.com/srnarasim/issues)** - Report bugs and request features
+- **[Community Discussions](https://github.com/srnarasim/discussions)** - Get help from the community
 
 ## 🔗 Quick Links
 
-- **[CDN Usage](https://srnarasim.github.io/DataPrism/)** - CDN documentation
+- **[CDN Usage](https://srnarasim.github.io/)** - CDN documentation
 - **[Plugin Framework](./architecture/)** - Technical architecture
 - **[Development Setup](./development/)** - Start developing plugins
 - **[API Reference](./api/)** - Complete API documentation

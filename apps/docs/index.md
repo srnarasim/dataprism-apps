@@ -20,7 +20,7 @@ hero:
       link: /api/
     - theme: alt
       text: Demo Application
-      link: https://srnarasim.github.io/DataPrism-demo-analytics/
+      link: https://srnarasim.github.io/dataprism-apps/
 
 features:
   - icon: 🚀
@@ -61,7 +61,7 @@ npm install @dataprism/core
 ```bash [CDN]
 # Include via CDN (no installation required)
 <script type="module">
-   import { DataPrismEngine } from 'https://srnarasim.github.io/DataPrism/dataprism.min.js';
+   import { DataPrismEngine } from 'https://srnarasim.github.io/dataprism-apps/dataprism.min.js';
 </script>
 ```
 
@@ -135,10 +135,10 @@ console.log(result.data);
 
 Explore DataPrism Core capabilities:
 
-- [**Basic Examples**](/DataPrism/examples/basic) - Simple data processing and visualization
-- [**Advanced Examples**](/DataPrism/examples/advanced) - Complex analytical workloads
-- [**Plugin Examples**](/DataPrism/examples/plugins) - Custom plugin development
-- [**API Reference**](/DataPrism/api/) - Complete API documentation
+- [**Basic Examples**](/examples/basic) - Simple data processing and visualization
+- [**Advanced Examples**](/examples/advanced) - Complex analytical workloads
+- [**Plugin Examples**](/examples/plugins) - Custom plugin development
+- [**API Reference**](/api/) - Complete API documentation
 - [**Demo Application**](https://srnarasim.github.io/DataPrism-demo-analytics/) - Interactive demo application
 
 ## Community & Support
@@ -155,8 +155,8 @@ Explore DataPrism Core capabilities:
   </a>
 </div>
 
-- 💬 [GitHub Discussions](https://github.com/srnarasim/DataPrism/discussions) - Ask questions and share ideas
-- 🐛 [Issues](https://github.com/srnarasim/DataPrism/issues) - Report bugs and request features
+- 💬 [GitHub Discussions](https://github.com/srnarasim/discussions) - Ask questions and share ideas
+- 🐛 [Issues](https://github.com/srnarasim/issues) - Report bugs and request features
 
 ## Browser Support
 
@@ -174,17 +174,17 @@ DataPrism Core supports all modern browsers with WebAssembly:
 <div class="next-steps">
   <div class="step">
     <h3>📚 Learn the Basics</h3>
-    <p>Start with our <a href="/DataPrism/guide/getting-started">Getting Started guide</a> to understand core concepts</p>
+    <p>Start with our <a href="/guide/getting-started">Getting Started guide</a> to understand core concepts</p>
   </div>
   
   <div class="step">
     <h3>🔧 Build Something</h3>
-    <p>Follow our <a href="/DataPrism/examples/">examples</a> to build your first analytics application</p>
+    <p>Follow our <a href="/examples/">examples</a> to build your first analytics application</p>
   </div>
   
   <div class="step">
     <h3>🚀 Go Advanced</h3>
-    <p>Explore <a href="/DataPrism/plugins/">plugin development</a> and advanced integration patterns</p>
+    <p>Explore <a href="/plugins/">plugin development</a> and advanced integration patterns</p>
   </div>
 </div>
 

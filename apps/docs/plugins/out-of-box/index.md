@@ -5,13 +5,13 @@ DataPrism comes with 4 production-ready plugins that you can use immediately. Th
 ## 🚀 Quick Start
 
 ```javascript
-import { DataPrismEngine } from "https://srnarasim.github.io/DataPrism/dataprism.min.js";
+import { DataPrismEngine } from "https://srnarasim.github.io/dataprism.min.js";
 import { 
   createVisualizationPlugin,
   createIntegrationPlugin,
   createProcessingPlugin,
   createUtilityPlugin
-} from "https://srnarasim.github.io/DataPrism/dataprism-plugins.min.js";
+} from "https://srnarasim.github.io/dataprism-plugins.min.js";
 
 // Use ready-made plugins
 const chartsPlugin = await createVisualizationPlugin("observable-charts");
@@ -496,13 +496,13 @@ a.click();
 Here's a complete example using all four plugins together:
 
 ```javascript
-import { DataPrismEngine } from "https://srnarasim.github.io/DataPrism/dataprism.min.js";
+import { DataPrismEngine } from "https://srnarasim.github.io/dataprism.min.js";
 import { 
   createVisualizationPlugin,
   createIntegrationPlugin,
   createProcessingPlugin,
   createUtilityPlugin
-} from "https://srnarasim.github.io/DataPrism/dataprism-plugins.min.js";
+} from "https://srnarasim.github.io/dataprism-plugins.min.js";
 
 async function createAnalyticsDashboard(csvFile) {
   // Initialize engine
@@ -574,7 +574,7 @@ const dashboard = await createAnalyticsDashboard(myFile);
 - **[Plugin Examples](../examples/)** - More detailed code examples
 - **[Configuration Guide](../configuration/)** - Complete configuration reference
 - **[Troubleshooting](../troubleshooting/)** - Common issues and solutions
-- **[GitHub Issues](https://github.com/srnarasim/DataPrism/issues)** - Report bugs or request features
+- **[GitHub Issues](https://github.com/srnarasim/issues)** - Report bugs or request features
 
 ---
 

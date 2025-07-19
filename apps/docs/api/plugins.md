@@ -632,8 +632,8 @@ export class ChartPlugin implements VisualizationPlugin {
 
 ## Contributing
 
-Contributions are welcome! Please see our [Contributing Guide](https://github.com/srnarasim/DataPrism/blob/main/CONTRIBUTING.md) for details.
+Contributions are welcome! Please see our [Contributing Guide](https://github.com/srnarasim/blob/main/CONTRIBUTING.md) for details.
 
 ## License
 
-MIT License. See [LICENSE](https://github.com/srnarasim/DataPrism/blob/main/LICENSE) for details.
+MIT License. See [LICENSE](https://github.com/srnarasim/blob/main/LICENSE) for details.

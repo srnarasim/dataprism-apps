@@ -57,7 +57,7 @@ import {
   IVisualizationPlugin,
   IIntegrationPlugin,
   IUtilityPlugin
-} from "https://srnarasim.github.io/DataPrism/dataprism.min.js";
+} from "https://srnarasim.github.io/dataprism.min.js";
 ```
 
 **PLUGIN CATEGORIES:**
@@ -289,7 +289,7 @@ interface PluginConfig {
 
 ### Community
 - **[Plugin Gallery](../gallery/)** - Community-created plugins
-- **[GitHub Discussions](https://github.com/srnarasim/DataPrism/discussions)** - Community support
+- **[GitHub Discussions](https://github.com/srnarasim/discussions)** - Community support
 - **[Plugin Marketplace](../marketplace/)** - Share and discover plugins
 
 ## 🚀 Quick Start Examples
@@ -357,6 +357,6 @@ Use this prompt to generate a real-time data plugin:
 ## 🆘 Need Help?
 
 - **[Plugin Development FAQ](../faq/)** - Common questions and solutions
-- **[GitHub Issues](https://github.com/srnarasim/DataPrism/issues)** - Report issues or request help
+- **[GitHub Issues](https://github.com/srnarasim/issues)** - Report issues or request help
 - **[Community Discord](https://discord.gg/dataprism)** - Real-time community support
 - **[Plugin Workshops](../workshops/)** - Live plugin development sessions

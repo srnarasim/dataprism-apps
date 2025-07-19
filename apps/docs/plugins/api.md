@@ -671,8 +671,8 @@ See the [Plugin Examples](/examples/plugins) page for complete working examples 
 
 ## Contributing
 
-Contributions to the plugin API are welcome! Please see our [Contributing Guide](https://github.com/srnarasim/DataPrism/blob/main/CONTRIBUTING.md) for details.
+Contributions to the plugin API are welcome! Please see our [Contributing Guide](https://github.com/srnarasim/blob/main/CONTRIBUTING.md) for details.
 
 ## License
 
-MIT License. See [LICENSE](https://github.com/srnarasim/DataPrism/blob/main/LICENSE) for details.
+MIT License. See [LICENSE](https://github.com/srnarasim/blob/main/LICENSE) for details.

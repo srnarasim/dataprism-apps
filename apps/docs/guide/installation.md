@@ -9,14 +9,14 @@ The fastest way to get started with DataPrism is via CDN:
 ```html
 <!-- ES Module -->
 <script type="module">
-import { DataPrismEngine } from "https://srnarasim.github.io/DataPrism/dataprism.min.js";
+import { DataPrismEngine } from "https://srnarasim.github.io/dataprism.min.js";
 
 const engine = new DataPrismEngine();
 await engine.initialize();
 </script>
 
 <!-- UMD Bundle -->
-<script src="https://srnarasim.github.io/DataPrism/dataprism.umd.js"></script>
+<script src="https://srnarasim.github.io/dataprism.umd.js"></script>
 <script>
   const { DataPrismEngine } = DataPrism;
   const engine = new DataPrismEngine();

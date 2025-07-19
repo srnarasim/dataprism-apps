@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 import { useTheme } from "../contexts/ThemeContext";
-import { useDataPrism } from "../contexts/DataPrismContext";
+import { useDataPrism } from "../contexts/DataPrismCDNContext";
 import { cn } from "../utils/cn";
 
 interface LayoutProps {

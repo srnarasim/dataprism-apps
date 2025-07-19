@@ -189,8 +189,8 @@ const pluginManager = new DataPrismPluginManager({
 <!-- Secure CSP headers -->
 <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https://srnarasim.github.io/DataPrism/;
-    wasm-src 'self' https://srnarasim.github.io/DataPrism/;
+    script-src 'self' 'unsafe-inline' https://srnarasim.github.io/;
+    wasm-src 'self' https://srnarasim.github.io/;
     worker-src 'self';
     connect-src 'self' https://api.openai.com https://api.anthropic.com;
     img-src 'self' data: https:;
@@ -358,7 +358,7 @@ const engine = new DataPrismEngine({
 
 ```html
 <!-- Verify CDN integrity -->
-<script src="https://srnarasim.github.io/DataPrism/dataprism.min.js"
+<script src="https://srnarasim.github.io/dataprism.min.js"
         integrity="sha384-[hash]"
         crossorigin="anonymous"></script>
 ```

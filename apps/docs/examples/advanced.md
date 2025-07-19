@@ -953,8 +953,8 @@ class PerformanceMonitor {
 
 ## Contributing
 
-Found an issue or have a suggestion? Please contribute to our [GitHub repository](https://github.com/srnarasim/DataPrism).
+Found an issue or have a suggestion? Please contribute to our [GitHub repository](https://github.com/srnarasim/dataprism-apps).
 
 ## License
 
-MIT License. See [LICENSE](https://github.com/srnarasim/DataPrism/blob/main/LICENSE) for details.
+MIT License. See [LICENSE](https://github.com/srnarasim/blob/main/LICENSE) for details.

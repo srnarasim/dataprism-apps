@@ -13,7 +13,7 @@ import {
   Github,
 } from "lucide-react";
 
-import { useDataPrism } from "../contexts/DataPrismContext";
+import { useDataPrism } from "../contexts/DataPrismCDNContext";
 
 export default function HomePage() {
   const { isInitialized, initializationError, retry } = useDataPrism();

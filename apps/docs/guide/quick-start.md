@@ -10,7 +10,7 @@ Choose your preferred installation method:
 
 ```html
 <script type="module">
-import { DataPrismEngine } from "https://srnarasim.github.io/DataPrism/dataprism.min.js";
+import { DataPrismEngine } from "https://srnarasim.github.io/dataprism.min.js";
 </script>
 ```
 
@@ -82,7 +82,7 @@ document.getElementById('chart').appendChild(chart.element);
     <div id="chart"></div>
     
     <script type="module">
-    import { DataPrismEngine } from "https://srnarasim.github.io/DataPrism/dataprism.min.js";
+    import { DataPrismEngine } from "https://srnarasim.github.io/dataprism.min.js";
     
     async function main() {
         const engine = new DataPrismEngine();

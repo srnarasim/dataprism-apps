@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'DataPrism Documentation',
   description: 'WebAssembly-powered browser analytics engine with DuckDB and LLM integration',
-  base: '/DataPrism/',
+  base: '/',
   outDir: './.vitepress/dist',
   ignoreDeadLinks: true,
   
@@ -20,12 +20,12 @@ export default defineConfig({
   },
   
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/DataPrism/docs/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#3c82f6' }],
     ['meta', { name: 'og:type', content: 'website' }],
     ['meta', { name: 'og:locale', content: 'en' }],
     ['meta', { name: 'og:site_name', content: 'DataPrism Documentation' }],
-    ['meta', { name: 'og:image', content: 'https://srnarasim.github.io/DataPrism/docs/og-image.png' }],
+    ['meta', { name: 'og:image', content: 'https://srnarasim.github.io/dataprism-apps/og-image.png' }],
     ['script', { src: 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX', async: '' }],
     ['script', {}, `
       window.dataLayer = window.dataLayer || [];
@@ -47,8 +47,8 @@ export default defineConfig({
       {
         text: 'v1.0.0',
         items: [
-          { text: 'Changelog', link: 'https://github.com/srnarasim/DataPrism/blob/main/CHANGELOG.md' },
-          { text: 'Contributing', link: 'https://github.com/srnarasim/DataPrism/blob/main/CONTRIBUTING.md' }
+          { text: 'Changelog', link: 'https://github.com/srnarasim/dataprism-apps/blob/main/CHANGELOG.md' },
+          { text: 'Contributing', link: 'https://github.com/srnarasim/dataprism-apps/blob/main/CONTRIBUTING.md' }
         ]
       }
     ],
@@ -136,7 +136,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/srnarasim/DataPrism' },
+      { icon: 'github', link: 'https://github.com/srnarasim/dataprism-apps' },
       { icon: 'twitter', link: 'https://twitter.com/dataprism' },
       { icon: 'discord', link: 'https://discord.gg/dataprism' }
     ],
@@ -171,7 +171,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/srnarasim/DataPrism/edit/main/apps/docs/:path',
+      pattern: 'https://github.com/srnarasim/dataprism-apps/edit/main/apps/docs/:path',
       text: 'Edit this page on GitHub'
     },
 
