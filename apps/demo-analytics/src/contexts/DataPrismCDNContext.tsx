@@ -125,12 +125,16 @@ export function DataPrismProvider({ children, cdnConfig }: DataPrismProviderProp
 
       const { DataPrismEngine } = currentDeps.core;
       
+      if (!DataPrismEngine) {
+        throw new Error('DataPrismEngine not found in loaded CDN modules');
+      }
+      
       // Initialize the engine with CDN-loaded types
       const engineInstance = new DataPrismEngine({
         maxMemoryMB: 512,
         enableWasmOptimizations: true,
+        queryTimeoutMs: 30000,
         logLevel: import.meta.env.DEV ? "debug" : "info",
-        cdnBaseUrl: cdnConfig?.coreBaseUrl || 'https://srnarasim.github.io/dataprism-core',
       });
 
       await engineInstance.initialize();
