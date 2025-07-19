@@ -5,7 +5,7 @@ export default defineConfig({
   title: "DataPrism Core",
   description:
     "High-performance browser-based analytics engine with WebAssembly",
-  base: "/",
+  base: "/dataprism-apps/",
 
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
