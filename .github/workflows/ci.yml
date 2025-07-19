@@ -11,8 +11,13 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-      - name: Install dependencies
+          cache-dependency-path: |
+            package-lock.json
+            apps/demo-analytics/package-lock.json
+      - name: Install root dependencies
         run: npm ci
+      - name: Install demo app dependencies
+        run: cd apps/demo-analytics && npm ci
       - name: Build demo app
         run: npm run build:demo
       - name: Test demo app
@@ -31,8 +36,13 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-      - name: Install dependencies
+          cache-dependency-path: |
+            package-lock.json
+            apps/docs/package-lock.json
+      - name: Install root dependencies
         run: npm ci
+      - name: Install docs dependencies
+        run: cd apps/docs && npm ci
       - name: Build documentation
         run: npm run build:docs
       - name: Validate documentation links
@@ -42,7 +52,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/dist
+          publish_dir: ./apps/docs/.vitepress/dist
   
   marketplace:
     runs-on: ubuntu-latest
@@ -53,7 +63,8 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-      - name: Install dependencies
+          cache-dependency-path: package-lock.json
+      - name: Install root dependencies
         run: npm ci
       - name: Build marketplace
         run: npm run build:marketplace
