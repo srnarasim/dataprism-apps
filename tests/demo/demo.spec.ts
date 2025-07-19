@@ -2,20 +2,30 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Demo Application', () => {
   test('should load the homepage', async ({ page }) => {
-    // For now, just test that we can navigate to a basic URL
-    // In a real implementation, this would test the actual demo app
-    await page.goto('/');
+    // Navigate to the demo app
+    await page.goto('/', { waitUntil: 'networkidle' });
+    
+    // Wait for the page to be visible
+    await page.waitForLoadState('domcontentloaded');
     
     // Basic assertion that page loads
     expect(page.locator('body')).toBeVisible();
+    
+    // Check that we have some HTML content
+    const title = await page.title();
+    expect(title).toBeTruthy();
   });
 
-  test('should have basic structure', async ({ page }) => {
+  test('should have React app structure', async ({ page }) => {
     // Navigate to root
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'networkidle' });
+    
+    // Wait for React to render
+    await page.waitForTimeout(3000);
     
     // Check that we have some basic HTML structure
     const bodyContent = await page.textContent('body');
     expect(bodyContent).toBeDefined();
+    expect(bodyContent).not.toBe('');
   });
 });
