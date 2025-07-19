@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const DOCS_DIR = join(__dirname, '..');
-const CONFIG_FILE = join(DOCS_DIR, '.vitepress', 'config.js');
+const CONFIG_FILE = join(DOCS_DIR, '.vitepress', 'config.ts');
 
 class DocumentationValidator {
   constructor() {
