@@ -113,7 +113,7 @@ export class DataPrismCDNLoader {
   }
 
   private async loadCore(): Promise<DataPrismCore> {
-    const coreUrl = `${this.config.coreBaseUrl}/orchestration/index.js`;
+    const coreUrl = `${this.config.coreBaseUrl}/dataprism-core.min.js`;
     console.log(`[CDN Loader] Loading core from: ${coreUrl}`);
 
     const controller = new AbortController();
@@ -121,10 +121,10 @@ export class DataPrismCDNLoader {
 
     try {
       const module = await import(/* @vite-ignore */ coreUrl);
-      console.log('[CDN Loader] ✅ Core loaded successfully');
+      console.log('[CDN Loader] ✅ Core loaded successfully from bundled DataPrism Core');
       
       return {
-        DataPrismEngine: module.DataPrismEngine || class DataPrismEngine {},
+        DataPrismEngine: module.DataPrismEngine || module.default?.DataPrismEngine,
         ...module,
       };
     } catch (error) {
@@ -179,7 +179,7 @@ export class DataPrismCDNLoader {
   }
 
   private async loadPlugins(): Promise<DataPrismPlugins> {
-    const pluginsUrl = `${this.config.pluginsBaseUrl}/plugins/index.js`;
+    const pluginsUrl = `${this.config.pluginsBaseUrl}/dataprism-plugins.min.js`;
     console.log(`[CDN Loader] Loading plugins from: ${pluginsUrl}`);
 
     const controller = new AbortController();
@@ -187,10 +187,10 @@ export class DataPrismCDNLoader {
 
     try {
       const module = await import(/* @vite-ignore */ pluginsUrl);
-      console.log('[CDN Loader] ✅ Plugins loaded successfully');
+      console.log('[CDN Loader] ✅ Plugins loaded successfully from bundled DataPrism Plugins');
       
       return {
-        PluginManager: module.PluginManager || class PluginManager {},
+        PluginManager: module.PluginManager || module.default?.PluginManager,
         loadDataPrismCore: module.loadDataPrismCore || (() => Promise.resolve({})),
         ...module,
       };
