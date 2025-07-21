@@ -46,7 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.PROD ? "/dataprism-apps/demo-analytics" : ""}>
           <ThemeProvider>
             <DataPrismProvider cdnConfig={cdnConfig}>
               <App />
