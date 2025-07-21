@@ -18,6 +18,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import { useSpreadsheet } from '@contexts/SpreadsheetContext';
+import SampleDataDropdown from '@components/SampleDataDropdown';
 
 interface MainToolbarProps {
   onNewFile: () => void;
@@ -25,10 +26,12 @@ interface MainToolbarProps {
   onSaveFile: () => void;
   onImportCSV: () => void;
   onExportCSV: () => void;
+  onLoadSample?: (filename: string) => void;
   onShowFunctionLibrary: () => void;
   onShowPerformanceMonitor: () => void;
   onShowSettings: () => void;
   onShowHelp: () => void;
+  isProcessing?: boolean;
 }
 
 export default function MainToolbar({
@@ -37,10 +40,12 @@ export default function MainToolbar({
   onSaveFile,
   onImportCSV,
   onExportCSV,
+  onLoadSample,
   onShowFunctionLibrary,
   onShowPerformanceMonitor,
   onShowSettings,
   onShowHelp,
+  isProcessing = false,
 }: MainToolbarProps) {
   const { undo, redo, canUndo, canRedo } = useSpreadsheet();
   const [activeFormat, setActiveFormat] = useState<string[]>([]);
@@ -94,7 +99,10 @@ export default function MainToolbar({
         <div className="flex items-center space-x-1 mr-4">
           <button
             onClick={onImportCSV}
-            className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded"
+            disabled={isProcessing}
+            className={`flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded ${
+              isProcessing ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             title="Import CSV"
           >
             <Upload size={16} className="mr-1" />
@@ -103,12 +111,22 @@ export default function MainToolbar({
           
           <button
             onClick={onExportCSV}
-            className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded"
+            disabled={isProcessing}
+            className={`flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded ${
+              isProcessing ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             title="Export CSV"
           >
             <Download size={16} className="mr-1" />
             Export
           </button>
+          
+          {onLoadSample && (
+            <SampleDataDropdown 
+              onLoadSample={onLoadSample}
+              isProcessing={isProcessing}
+            />
+          )}
         </div>
 
         {/* Separator */}

@@ -5,8 +5,8 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react()],
   
-  // Set base path for GitHub Pages deployment to /dataprism-apps/ironcalc/
-  base: process.env.NODE_ENV === 'production' ? '/dataprism-apps/ironcalc/' : '/',
+  // Set base path for GitHub Pages deployment to /dataprism-apps/ironcalc-spreadsheet/
+  base: process.env.NODE_ENV === 'production' ? '/dataprism-apps/ironcalc-spreadsheet/' : '/',
 
   resolve: {
     alias: {

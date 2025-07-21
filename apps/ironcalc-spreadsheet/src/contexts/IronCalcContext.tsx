@@ -284,12 +284,24 @@ export function IronCalcProvider({ children }: IronCalcProviderProps) {
 
   // Get all available functions
   const getFunctions = useCallback((): FunctionDocumentation[] => {
-    if (!plugin || !plugin.getFunctions) {
+    console.log('[IronCalc Context] getFunctions called, plugin:', !!plugin);
+    console.log('[IronCalc Context] plugin.getFunctions:', plugin ? typeof plugin.getFunctions : 'no plugin');
+    
+    if (!plugin) {
+      console.log('[IronCalc Context] No plugin, returning empty array');
+      return [];
+    }
+    
+    if (!plugin.getFunctions) {
+      console.log('[IronCalc Context] Plugin has no getFunctions method, plugin methods:', Object.keys(plugin));
       return [];
     }
     
     try {
-      return plugin.getFunctions();
+      const result = plugin.getFunctions();
+      console.log('[IronCalc Context] plugin.getFunctions() result:', result);
+      console.log('[IronCalc Context] Result type:', typeof result, 'Is array:', Array.isArray(result));
+      return result;
     } catch (error) {
       console.warn('[IronCalc] Failed to get function list:', error);
       return [];

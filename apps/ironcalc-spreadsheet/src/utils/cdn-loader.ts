@@ -37,7 +37,7 @@ export class DataPrismCDNLoader {
   constructor(config: CDNLoaderConfig = {}) {
     this.config = {
       coreBaseUrl: 'https://srnarasim.github.io/dataprism-core',
-      pluginsBaseUrl: 'https://srnarasim.github.io/dataprism-plugins', // Back to CDN for now
+      pluginsBaseUrl: 'https://srnarasim.github.io/dataprism-plugins',
       timeout: 30000,
       retries: 3,
       enableCache: true,

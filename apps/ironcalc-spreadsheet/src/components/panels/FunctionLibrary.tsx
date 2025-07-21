@@ -19,14 +19,29 @@ const functionCategories = [
 ];
 
 export default function FunctionLibrary({ isOpen, onClose, onInsertFunction }: FunctionLibraryProps) {
-  const { getFunctions, getFunctionHelp } = useIronCalc();
+  const { getFunctions, getFunctionHelp, plugin, isPluginLoaded, pluginError } = useIronCalc();
+  
+  console.log('[FunctionLibrary] Plugin state:', { 
+    plugin: !!plugin, 
+    isPluginLoaded, 
+    pluginError: pluginError?.message,
+    pluginMethods: plugin ? Object.keys(plugin) : [],
+    hasFunctionsMethod: plugin ? typeof plugin.getFunctions === 'function' : false,
+    getFunctionsResult: plugin && typeof plugin.getFunctions === 'function' ? plugin.getFunctions() : 'No getFunctions method'
+  });
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedFunction, setSelectedFunction] = useState<FunctionDocumentation | null>(null);
 
   // Get all available functions
   const allFunctions = useMemo(() => {
-    return getFunctions();
+    console.log('[FunctionLibrary] Calling getFunctions from context...');
+    const functions = getFunctions();
+    console.log('[FunctionLibrary] Available functions:', functions);
+    console.log('[FunctionLibrary] Functions length:', functions.length);
+    console.log('[FunctionLibrary] Functions type:', typeof functions);
+    console.log('[FunctionLibrary] Is array:', Array.isArray(functions));
+    return functions;
   }, [getFunctions]);
 
   // Filter functions based on search and category
@@ -153,8 +168,20 @@ export default function FunctionLibrary({ isOpen, onClose, onInsertFunction }: F
               {filteredFunctions.length === 0 && (
                 <div className="p-8 text-center text-gray-500">
                   <Calculator size={32} className="mx-auto mb-3 text-gray-300" />
-                  <p>No functions found</p>
-                  <p className="text-sm">Try adjusting your search or category filter</p>
+                  {!isPluginLoaded ? (
+                    <>
+                      <p>Loading functions...</p>
+                      <p className="text-sm">Plugin: {pluginError ? 'Error' : 'Loading'}</p>
+                      {pluginError && (
+                        <p className="text-xs text-red-600 mt-2">{pluginError.message}</p>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <p>No functions found</p>
+                      <p className="text-sm">Try adjusting your search or category filter</p>
+                    </>
+                  )}
                 </div>
               )}
             </div>
