@@ -5,10 +5,12 @@ import SpreadsheetGrid from '@components/spreadsheet/SpreadsheetGrid';
 import FormulaBar from '@components/spreadsheet/FormulaBar';
 import MainToolbar from '@components/toolbar/MainToolbar';
 import FunctionLibrary from '@components/panels/FunctionLibrary';
+import PerformanceMonitor from '@components/panels/PerformanceMonitor';
 
 function App() {
   const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>({ row: 0, col: 0 });
   const [showFunctionLibrary, setShowFunctionLibrary] = useState(false);
+  const [showPerformanceMonitor, setShowPerformanceMonitor] = useState(false);
 
   // Handle cell value changes from formula bar
   const handleCellValueChange = async (address: string, value: string, formula?: string) => {
@@ -44,7 +46,7 @@ function App() {
   };
 
   const handleShowPerformanceMonitor = () => {
-    console.log('[App] Show performance monitor');
+    setShowPerformanceMonitor(true);
   };
 
   const handleShowSettings = () => {
@@ -91,6 +93,12 @@ function App() {
             isOpen={showFunctionLibrary}
             onClose={() => setShowFunctionLibrary(false)}
             onInsertFunction={handleInsertFunction}
+          />
+
+          {/* Performance Monitor Modal */}
+          <PerformanceMonitor
+            isOpen={showPerformanceMonitor}
+            onClose={() => setShowPerformanceMonitor(false)}
           />
 
           {/* Status Bar */}

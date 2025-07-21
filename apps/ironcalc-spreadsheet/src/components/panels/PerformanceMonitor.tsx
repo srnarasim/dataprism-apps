@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, Clock, Memory, Zap, X, Activity } from 'lucide-react';
+import { BarChart3, Clock, Database, Zap, X, Activity } from 'lucide-react';
 import { useIronCalc } from '@contexts/IronCalcContext';
 
 interface PerformanceMonitorProps {
@@ -89,7 +89,7 @@ export default function PerformanceMonitor({ isOpen, onClose }: PerformanceMonit
             <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center">
-                  <Memory size={16} className="text-green-600 mr-2" />
+                  <Database size={16} className="text-green-600 mr-2" />
                   <span className="text-sm font-medium text-green-800">Memory</span>
                 </div>
                 <span className="text-2xl font-bold text-green-900">
