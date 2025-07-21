@@ -1,0 +1,15 @@
+Date,Region,Product,Salesperson,Units Sold,Unit Price,Total Sales,Commission Rate
+2023-01-15,North,Widget A,Alice,25,49.99,=E2*F2,5%
+2023-01-15,South,Widget B,Bob,18,79.99,=E3*F3,7%
+2023-01-16,East,Gadget X,Charlie,32,129.99,=E4*F4,6%
+2023-01-16,West,Gadget Y,Diana,15,199.99,=E5*F5,8%
+2023-01-17,North,Tool Z,Eve,28,89.99,=E6*F6,5.5%
+2023-01-18,South,Widget A,Alice,22,49.99,=E7*F7,5%
+2023-01-18,East,Widget B,Bob,35,79.99,=E8*F8,7%
+2023-01-19,West,Gadget X,Charlie,19,129.99,=E9*F9,6%
+2023-01-20,North,Gadget Y,Diana,41,199.99,=E10*F10,8%
+2023-01-21,South,Tool Z,Eve,33,89.99,=E11*F11,5.5%
+Total Units,,,,=SUM(E2:E11),,=SUM(G2:G11),
+Average Sale,,,,=AVERAGE(E2:E11),=AVERAGE(F2:F11),=AVERAGE(G2:G11),
+Top Sale,,,,=MAX(E2:E11),=MAX(F2:F11),=MAX(G2:G11),
+Commission Total,,,,,,=G2*H2+G3*H3+G4*H4+G5*H5+G6*H6+G7*H7+G8*H8+G9*H9+G10*H10+G11*H11,

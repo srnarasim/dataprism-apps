@@ -1,0 +1,15 @@
+SKU,Product Name,Category,Current Stock,Reorder Level,Unit Cost,Retail Price,Supplier,Last Restocked,Status
+WA001,Widget A,Widgets,150,50,25.00,49.99,ABC Corp,2023-12-01,=IF(C2<D2,"REORDER","OK")
+WB002,Widget B,Widgets,25,30,40.00,79.99,XYZ Ltd,2023-11-15,=IF(C3<D3,"REORDER","OK")
+GX003,Gadget X,Gadgets,75,25,65.00,129.99,TechCorp,2023-12-10,=IF(C4<D4,"REORDER","OK")
+GY004,Gadget Y,Gadgets,12,20,100.00,199.99,TechCorp,2023-11-20,=IF(C5<D5,"REORDER","OK")
+TZ005,Tool Z,Tools,88,40,45.00,89.99,ToolCo,2023-12-05,=IF(C6<D6,"REORDER","OK")
+WC006,Widget C,Widgets,200,75,30.00,59.99,ABC Corp,2023-12-12,=IF(C7<D7,"REORDER","OK")
+GZ007,Gadget Z,Gadgets,8,15,85.00,169.99,TechCorp,2023-10-30,=IF(C8<D8,"REORDER","OK")
+TA008,Tool A,Tools,65,30,35.00,69.99,ToolCo,2023-11-28,=IF(C9<D9,"REORDER","OK")
+WD009,Widget D,Widgets,110,60,28.00,54.99,ABC Corp,2023-12-08,=IF(C10<D10,"REORDER","OK")
+TB010,Tool B,Tools,45,25,42.00,84.99,ToolCo,2023-12-03,=IF(C11<D11,"REORDER","OK")
+Total Items,,,=COUNT(A2:A11),,,,,,
+Total Value,,,=SUMPRODUCT(C2:C11,E2:E11),,,,,,
+Avg Stock,,,=AVERAGE(C2:C11),,,,,,
+Items to Reorder,,,=COUNTIF(J2:J11,"REORDER"),,,,,,

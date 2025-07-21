@@ -1,0 +1,71 @@
+{
+  "name": "@dataprism/ironcalc-spreadsheet",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Excel-compatible spreadsheet application powered by DataPrism and IronCalc formula engine",
+  "keywords": [
+    "dataprism",
+    "spreadsheet",
+    "excel",
+    "formula",
+    "ironcalc",
+    "wasm",
+    "analytics"
+  ],
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write src",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "react-window": "^1.8.8",
+    "react-window-infinite-loader": "^1.0.9",
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "papaparse": "^5.4.1",
+    "xlsx": "^0.18.5",
+    "react-dropzone": "^14.2.3",
+    "date-fns": "^2.30.0",
+    "lucide-react": "^0.263.1",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^1.14.0",
+    "hotkeys-js": "^3.13.7",
+    "@tanstack/react-query": "^4.35.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/react-window": "^1.8.5",
+    "@types/papaparse": "^5.3.7",
+    "@vitejs/plugin-react": "^4.0.0",
+    "@playwright/test": "^1.40.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/jest-dom": "^6.1.0",
+    "@testing-library/user-event": "^14.5.0",
+    "jsdom": "^23.0.0",
+    "typescript": "^5.2.0",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.50.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

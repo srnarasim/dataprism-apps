@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles for the spreadsheet application */
+@layer base {
+  html, body {
+    @apply h-full overflow-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  #root {
+    @apply h-full;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* Custom scrollbar styles */
+@layer components {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f9fafb;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #f9fafb;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+  
+  /* Cell selection styles */
+  .cell-selected {
+    @apply ring-2 ring-blue-500 ring-inset bg-blue-50;
+  }
+  
+  .cell-editing {
+    @apply ring-2 ring-green-500 ring-inset bg-white;
+  }
+  
+  .cell-error {
+    @apply bg-red-50 text-red-700;
+  }
+  
+  /* Grid lines */
+  .grid-line-h {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .grid-line-v {
+    border-right: 1px solid #e5e7eb;
+  }
+  
+  /* Prevent text selection in headers */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Loading animation */
+  .loading-spinner {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Text truncation utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Focus styles for accessibility */
+  .focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  }
+}
+
+/* Utilities for spreadsheet specific styles */
+@layer utilities {
+  .text-cell {
+    @apply text-left;
+  }
+  
+  .number-cell {
+    @apply text-right font-mono;
+  }
+  
+  .formula-cell {
+    @apply text-left font-mono text-blue-700;
+  }
+  
+  .error-cell {
+    @apply text-center text-red-600 font-medium;
+  }
+  
+  /* Cell border styles */
+  .border-cell {
+    border: 1px solid #e5e7eb;
+  }
+  
+  .border-cell-selected {
+    border: 2px solid #3b82f6;
+  }
+  
+  .border-cell-editing {
+    border: 2px solid #10b981;
+  }
+}
