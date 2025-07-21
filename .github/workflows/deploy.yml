@@ -34,17 +34,11 @@ jobs:
     - name: Install demo-analytics dependencies
       run: cd apps/demo-analytics && npm ci
       
-    - name: Install docs dependencies  
-      run: cd apps/docs && npm ci
-      
     - name: Install ironcalc-spreadsheet dependencies
       run: cd apps/ironcalc-spreadsheet && npm ci
       
     - name: Build demo-analytics
       run: cd apps/demo-analytics && npm run build
-      
-    - name: Build docs
-      run: cd apps/docs && npm run build
       
     - name: Build ironcalc-spreadsheet
       run: cd apps/ironcalc-spreadsheet && NODE_ENV=production npm run build
