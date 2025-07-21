@@ -11,6 +11,10 @@ try {
   console.log('📊 Building demo analytics...');
   execSync('cd apps/demo-analytics && npm run build', { stdio: 'inherit' });
   
+  // Build docs
+  console.log('📚 Building documentation...');
+  execSync('cd apps/docs && npm run build', { stdio: 'inherit' });
+  
   // Build ironcalc spreadsheet  
   console.log('📱 Building IronCalc spreadsheet...');
   execSync('cd apps/ironcalc-spreadsheet && NODE_ENV=production npm run build', { stdio: 'inherit' });
@@ -28,6 +32,32 @@ try {
   console.log('📋 Copying demo analytics...');
   fs.mkdirSync('dist/demo-analytics', { recursive: true });
   execSync('cp -r apps/demo-analytics/dist/* dist/demo-analytics/');
+  
+  // Copy docs content to guide, api, and other doc subdirectories
+  console.log('📋 Copying documentation...');
+  ['guide', 'api', 'examples', 'plugins'].forEach(dir => {
+    fs.mkdirSync(`dist/${dir}`, { recursive: true });
+  });
+  
+  try {
+    // Copy doc subdirectories if they exist
+    if (fs.existsSync('apps/docs/.vitepress/dist/guide')) {
+      execSync('cp -r apps/docs/.vitepress/dist/guide/* dist/guide/');
+    }
+    if (fs.existsSync('apps/docs/.vitepress/dist/api')) {
+      execSync('cp -r apps/docs/.vitepress/dist/api/* dist/api/');
+    }
+    if (fs.existsSync('apps/docs/.vitepress/dist/examples')) {
+      execSync('cp -r apps/docs/.vitepress/dist/examples/* dist/examples/');
+    }
+    if (fs.existsSync('apps/docs/.vitepress/dist/plugins')) {
+      execSync('cp -r apps/docs/.vitepress/dist/plugins/* dist/plugins/');
+    }
+    // Copy docs assets (CSS, JS, fonts) but not index.html
+    execSync('find apps/docs/.vitepress/dist -name "*.css" -o -name "*.js" -o -name "*.woff*" -o -name "*.ico" -exec cp {} dist/ \\; 2>/dev/null || true');
+  } catch (error) {
+    console.log('⚠️  Some docs files may not exist, continuing...');
+  }
   
   // Copy ironcalc spreadsheet to subdirectory
   console.log('📋 Copying IronCalc spreadsheet...');
@@ -98,6 +128,8 @@ try {
   console.log('🌐 Apps available at:');
   console.log('   • Main: ./dist/index.html');
   console.log('   • Demo Analytics: ./dist/demo-analytics/index.html');
+  console.log('   • Documentation: ./dist/guide/index.html');
+  console.log('   • API Reference: ./dist/api/index.html');
   console.log('   • IronCalc Spreadsheet: ./dist/ironcalc-spreadsheet/index.html');
   
 } catch (error) {

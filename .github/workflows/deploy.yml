@@ -34,11 +34,17 @@ jobs:
     - name: Install demo-analytics dependencies
       run: cd apps/demo-analytics && npm ci
       
+    - name: Install docs dependencies
+      run: cd apps/docs && npm ci
+      
     - name: Install ironcalc-spreadsheet dependencies
       run: cd apps/ironcalc-spreadsheet && npm ci
       
     - name: Build demo-analytics
       run: cd apps/demo-analytics && npm run build
+      
+    - name: Build docs
+      run: cd apps/docs && npm run build
       
     - name: Build ironcalc-spreadsheet
       run: cd apps/ironcalc-spreadsheet && NODE_ENV=production npm run build
@@ -49,6 +55,19 @@ jobs:
         # Copy demo analytics to demo-analytics subdirectory
         mkdir -p dist/demo-analytics
         cp -r apps/demo-analytics/dist/* dist/demo-analytics/
+        # Copy docs content to guide, api, and other doc subdirectories
+        # Copy everything from docs except index.html to preserve our custom landing page
+        mkdir -p dist/guide dist/api dist/examples dist/plugins
+        if [ -d "apps/docs/.vitepress/dist/guide" ]; then cp -r apps/docs/.vitepress/dist/guide/* dist/guide/; fi
+        if [ -d "apps/docs/.vitepress/dist/api" ]; then cp -r apps/docs/.vitepress/dist/api/* dist/api/; fi  
+        if [ -d "apps/docs/.vitepress/dist/examples" ]; then cp -r apps/docs/.vitepress/dist/examples/* dist/examples/; fi
+        if [ -d "apps/docs/.vitepress/dist/plugins" ]; then cp -r apps/docs/.vitepress/dist/plugins/* dist/plugins/; fi
+        # Copy other docs assets but preserve our custom index.html
+        find apps/docs/.vitepress/dist -name "*.css" -o -name "*.js" -o -name "*.woff*" -o -name "*.ico" | while read file; do
+          rel_path=${file#apps/docs/.vitepress/dist/}
+          mkdir -p dist/$(dirname "$rel_path")
+          cp "$file" dist/"$rel_path"
+        done
         # Copy ironcalc spreadsheet to ironcalc-spreadsheet subdirectory
         mkdir -p dist/ironcalc-spreadsheet
         cp -r apps/ironcalc-spreadsheet/dist/* dist/ironcalc-spreadsheet/
