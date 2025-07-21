@@ -5,8 +5,8 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react()],
   
-  // Set base path for GitHub Pages deployment to /dataprism-apps/demo/
-  base: process.env.NODE_ENV === 'production' ? '/dataprism-apps/demo/' : '/',
+  // Set base path for GitHub Pages deployment to /dataprism-apps/demo-analytics/
+  base: process.env.NODE_ENV === 'production' ? '/dataprism-apps/demo-analytics/' : '/',
 
   resolve: {
     alias: {

@@ -110,7 +110,7 @@ try {
         <div class="app-card">
             <h3>Documentation</h3>
             <p>Complete documentation for DataPrism Core, plugins, and integration guides.</p>
-            <a href="https://docs.dataprism.dev" class="btn">View Docs</a>
+            <a href="./guide/" class="btn">View Docs</a>
         </div>
     </div>
     
