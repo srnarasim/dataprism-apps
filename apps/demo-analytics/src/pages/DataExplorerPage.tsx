@@ -31,6 +31,9 @@ const DataExplorerPage: React.FC = () => {
       setLoadedTables(tables);
     } catch (err) {
       console.warn('Failed to list tables:', err);
+      // Fallback to sample dataset names if engine isn't ready
+      const sampleTableNames = SAMPLE_DATASETS.map(ds => ds.id);
+      setLoadedTables(sampleTableNames);
     }
   };
 

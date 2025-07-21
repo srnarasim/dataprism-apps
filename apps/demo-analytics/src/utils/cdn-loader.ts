@@ -145,8 +145,29 @@ export class DataPrismCDNLoader {
     
     // Mock DataPrism Engine for demo purposes
     class MockDataPrismEngine {
+      private loadedTables: Map<string, any> = new Map();
+
       constructor() {
         console.log('[Mock] DataPrism Engine initialized (demo mode)');
+        // Initialize with sample tables
+        this.initializeSampleTables();
+      }
+
+      private initializeSampleTables() {
+        // Add sample table references
+        const sampleTables = [
+          'sales_data', 'financial_data', 'employee_data', 
+          'inventory_data', 'web_analytics', 'iot_sensors'
+        ];
+        
+        sampleTables.forEach(tableName => {
+          this.loadedTables.set(tableName, {
+            name: tableName,
+            columns: [],
+            rowCount: Math.floor(Math.random() * 10000) + 1000,
+            createdAt: new Date()
+          });
+        });
       }
 
       async initialize() {
@@ -168,9 +189,54 @@ export class DataPrismCDNLoader {
         };
       }
 
-      async loadData(data: any[]) {
-        console.log('[Mock] Loading data:', data.length, 'rows');
+      async loadData(data: any[], tableName: string = 'user_data') {
+        console.log('[Mock] Loading data:', data.length, 'rows into table:', tableName);
+        
+        // Store table metadata
+        this.loadedTables.set(tableName, {
+          name: tableName,
+          columns: data.length > 0 ? Object.keys(data[0]).map(name => ({
+            name,
+            type: this.inferDataType(data[0][name]),
+            nullable: true
+          })) : [],
+          rowCount: data.length,
+          createdAt: new Date()
+        });
+        
         return Promise.resolve();
+      }
+
+      async getTableInfo(tableName: string) {
+        console.log('[Mock] Getting table info for:', tableName);
+        
+        const tableInfo = this.loadedTables.get(tableName);
+        if (!tableInfo) {
+          throw new Error(`Table '${tableName}' not found`);
+        }
+        
+        return tableInfo;
+      }
+
+      async listTables() {
+        console.log('[Mock] Listing tables');
+        return Array.from(this.loadedTables.keys());
+      }
+
+      private inferDataType(value: any): string {
+        if (typeof value === 'boolean') return 'boolean';
+        if (typeof value === 'number') return 'number';
+        if (value instanceof Date) return 'date';
+        if (typeof value === 'string' && !isNaN(Date.parse(value))) return 'date';
+        return 'string';
+      }
+
+      getMetrics() {
+        return {
+          queryCount: Math.floor(Math.random() * 100),
+          averageQueryTime: Math.floor(Math.random() * 1000),
+          memoryUsage: Math.floor(Math.random() * 100)
+        };
       }
     }
 

@@ -22,9 +22,7 @@ const QueryLabPage: React.FC = () => {
 
   const loadAvailableSchemas = async () => {
     try {
-      const tableNames = await listTables();
-      
-      // Create schemas for sample datasets
+      // Create schemas for sample datasets first
       const schemas: TableSchema[] = SAMPLE_DATASETS.map(dataset => ({
         name: dataset.id,
         columns: [],
@@ -32,26 +30,34 @@ const QueryLabPage: React.FC = () => {
         createdAt: new Date()
       }));
 
-      // Add any additional tables from the DataPrism engine
-      for (const tableName of tableNames) {
-        if (!schemas.find(s => s.name === tableName)) {
-          try {
-            const tableInfo = await getTableInfo(tableName);
-            schemas.push({
-              name: tableName,
-              columns: tableInfo.columns || [],
-              rowCount: tableInfo.rowCount || 0,
-              createdAt: new Date()
-            });
-          } catch (err) {
-            console.warn(`Failed to get info for table ${tableName}:`, err);
+      try {
+        const tableNames = await listTables();
+        
+        // Add any additional tables from the DataPrism engine
+        for (const tableName of tableNames) {
+          if (!schemas.find(s => s.name === tableName)) {
+            try {
+              const tableInfo = await getTableInfo(tableName);
+              schemas.push({
+                name: tableName,
+                columns: tableInfo.columns || [],
+                rowCount: tableInfo.rowCount || 0,
+                createdAt: new Date()
+              });
+            } catch (err) {
+              console.warn(`Failed to get info for table ${tableName}:`, err);
+            }
           }
         }
+      } catch (err) {
+        console.warn('Failed to list tables from engine, using sample datasets only:', err);
       }
 
       setAvailableSchemas(schemas);
     } catch (err) {
       console.warn('Failed to load schemas:', err);
+      // Fallback to empty schemas if everything fails
+      setAvailableSchemas([]);
     }
   };
 
