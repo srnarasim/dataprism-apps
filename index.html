@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataPrism Applications - Interactive Analytics Demos</title>
+    <meta name="description" content="Explore DataPrism's capabilities through interactive demos, applications, and examples. Experience WebAssembly-powered analytics in your browser.">
+    <meta name="keywords" content="dataprism, webassembly, analytics, demo, applications, data-visualization, browser-analytics">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://srnarasim.github.io/dataprism-apps/">
+    <meta property="og:title" content="DataPrism Applications">
+    <meta property="og:description" content="Explore DataPrism's capabilities through interactive demos and applications">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://srnarasim.github.io/dataprism-apps/">
+    <meta property="twitter:title" content="DataPrism Applications">
+    <meta property="twitter:description" content="Explore DataPrism's capabilities through interactive demos and applications">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .app-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .app-description {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .app-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .app-features li {
+            color: #68d391;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .app-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+        
+        .app-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .status-live {
+            background-color: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .status-beta {
+            background-color: #bee3f8;
+            color: #2a4365;
+        }
+        
+        .status-coming {
+            background-color: #fed7d7;
+            color: #742a2a;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 3rem;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .footer a:hover {
+            border-bottom-color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DataPrism Applications</h1>
+            <p class="subtitle">Experience the power of browser-based analytics through interactive demos and applications</p>
+        </header>
+        
+        <div class="apps-grid">
+            <!-- MCP Analytics Workflow -->
+            <a href="./mcp-analytics-workflow/" class="app-card">
+                <span class="app-icon">🔗</span>
+                <h2 class="app-title">MCP Analytics Workflow</h2>
+                <p class="app-description">
+                    Professional workflow orchestration with React Flow visualization. Create, execute, and monitor complex data analysis workflows with real-time progress tracking.
+                </p>
+                <ul class="app-features">
+                    <li>Interactive React Flow diagrams</li>
+                    <li>Real-time workflow execution</li>
+                    <li>AI-powered insights generation</li>
+                    <li>Comprehensive reporting</li>
+                    <li>CSV data processing</li>
+                </ul>
+                <span class="app-status status-live">Live</span>
+            </a>
+            
+            <!-- Demo Analytics -->
+            <a href="./demo-analytics/" class="app-card">
+                <span class="app-icon">📊</span>
+                <h2 class="app-title">DataPrism Analytics Demo</h2>
+                <p class="app-description">
+                    Interactive analytics demo showcasing DataPrism's core capabilities. Explore data visualization, query processing, and WebAssembly performance.
+                </p>
+                <ul class="app-features">
+                    <li>Interactive data exploration</li>
+                    <li>Real-time query processing</li>
+                    <li>Advanced visualizations</li>
+                    <li>Performance monitoring</li>
+                    <li>Plugin demonstrations</li>
+                </ul>
+                <span class="app-status status-live">Live</span>
+            </a>
+            
+            <!-- IronCalc Spreadsheet -->
+            <a href="./ironcalc-spreadsheet/" class="app-card">
+                <span class="app-icon">📋</span>
+                <h2 class="app-title">IronCalc Spreadsheet</h2>
+                <p class="app-description">
+                    Advanced spreadsheet application powered by DataPrism and IronCalc. Experience Excel-like functionality directly in your browser with WebAssembly performance.
+                </p>
+                <ul class="app-features">
+                    <li>Excel-compatible formulas</li>
+                    <li>Real-time calculations</li>
+                    <li>Data import/export</li>
+                    <li>Advanced functions</li>
+                    <li>Performance monitoring</li>
+                </ul>
+                <span class="app-status status-live">Live</span>
+            </a>
+            
+            <!-- Documentation -->
+            <a href="./docs/" class="app-card">
+                <span class="app-icon">📚</span>
+                <h2 class="app-title">Documentation Portal</h2>
+                <p class="app-description">
+                    Comprehensive documentation for the DataPrism ecosystem. Learn about architecture, APIs, plugins, and integration patterns.
+                </p>
+                <ul class="app-features">
+                    <li>API documentation</li>
+                    <li>Getting started guides</li>
+                    <li>Plugin development</li>
+                    <li>Architecture deep-dives</li>
+                    <li>Performance optimization</li>
+                </ul>
+                <span class="app-status status-live">Live</span>
+            </a>
+            
+            <!-- Plugin Marketplace (Coming Soon) -->
+            <div class="app-card" style="opacity: 0.7;">
+                <span class="app-icon">🔌</span>
+                <h2 class="app-title">Plugin Marketplace</h2>
+                <p class="app-description">
+                    Discover, install, and manage DataPrism plugins. Extend your analytics capabilities with community-contributed and official plugins.
+                </p>
+                <ul class="app-features">
+                    <li>Plugin discovery</li>
+                    <li>One-click installation</li>
+                    <li>Community ratings</li>
+                    <li>Version management</li>
+                    <li>Plugin development tools</li>
+                </ul>
+                <span class="app-status status-coming">Coming Soon</span>
+            </div>
+            
+            <!-- Examples Collection -->
+            <a href="./examples/" class="app-card">
+                <span class="app-icon">💡</span>
+                <h2 class="app-title">Usage Examples</h2>
+                <p class="app-description">
+                    Learn from practical examples and tutorials. From basic usage to advanced integration patterns, explore how to use DataPrism effectively.
+                </p>
+                <ul class="app-features">
+                    <li>Basic usage examples</li>
+                    <li>Integration tutorials</li>
+                    <li>Performance patterns</li>
+                    <li>Best practices</li>
+                    <li>Code samples</li>
+                </ul>
+                <span class="app-status status-live">Live</span>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>
+                Built with ❤️ using <a href="https://github.com/dataprism-ai/dataprism-core" target="_blank">DataPrism</a> • 
+                <a href="https://github.com/srnarasim/dataprism-apps" target="_blank">View on GitHub</a> • 
+                <a href="https://dataprism.ai" target="_blank">Learn More</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
