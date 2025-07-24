@@ -56,10 +56,57 @@ jobs:
         path: apps/${{ matrix.app }}/dist/
         retention-days: 7
 
+  build-docs:
+    runs-on: ubuntu-latest
+    continue-on-error: true  # Don't fail the entire workflow if docs fail
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: 'apps/docs/package-lock.json'
+        
+    - name: Install documentation dependencies
+      run: |
+        cd apps/docs
+        npm ci || echo "⚠️ Docs dependency installation failed, skipping docs build"
+        
+    - name: Build VitePress documentation
+      run: |
+        cd apps/docs
+        if npm run build; then
+          echo "✅ Documentation built successfully"
+          # Verify the build output exists
+          if [ -d ".vitepress/dist" ]; then
+            echo "✅ VitePress output directory found"
+            ls -la .vitepress/dist/
+          else
+            echo "❌ VitePress output directory not found"
+            exit 1
+          fi
+        else
+          echo "❌ Documentation build failed"
+          exit 1
+        fi
+      continue-on-error: true
+        
+    - name: Upload documentation artifacts
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: docs-build
+        path: apps/docs/.vitepress/dist/
+        retention-days: 7
+
   deploy:
     runs-on: ubuntu-latest
-    needs: test-and-build
-    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    needs: [test-and-build, build-docs]
+    if: always() && (needs.test-and-build.result == 'success') && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
     
     permissions:
       contents: read
@@ -98,15 +145,74 @@ jobs:
           fi
         done
         
-        # Copy docs if they exist
-        if [ -d "./apps/docs" ]; then
+        # Deploy VitePress documentation with fallback
+        if [ -d "./artifacts/docs-build" ]; then
           mkdir -p "./deploy/docs"
-          cp -r ./apps/docs/* "./deploy/docs/"
-          echo "✅ Deployed docs"
-        elif [ -d "./docs" ]; then
+          cp -r "./artifacts/docs-build"/* "./deploy/docs/"
+          echo "✅ Deployed VitePress documentation"
+        else
+          echo "⚠️  VitePress docs not available, creating fallback"
           mkdir -p "./deploy/docs"
-          cp -r ./docs/* "./deploy/docs/"
-          echo "✅ Deployed docs from root"
+          cat > "./deploy/docs/index.html" << 'EOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>DataPrism Documentation</title>
+            <meta http-equiv="refresh" content="0; url=https://github.com/srnarasim/dataprism-apps">
+            <style>
+                body {
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    padding: 40px 20px;
+                    background-color: #f8fafc;
+                    color: #2d3748;
+                    text-align: center;
+                    line-height: 1.6;
+                }
+                .container {
+                    background: white;
+                    padding: 40px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                h1 { color: #1a202c; margin-bottom: 1rem; }
+                .redirect-link {
+                    display: inline-block;
+                    margin-top: 2rem;
+                    padding: 12px 24px;
+                    background: #3182ce;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 6px;
+                    transition: background-color 0.2s;
+                }
+                .redirect-link:hover { background: #2c5282; }
+                .back-link {
+                    display: inline-block;
+                    margin-top: 1rem;
+                    color: #718096;
+                    text-decoration: none;
+                }
+                .back-link:hover { text-decoration: underline; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>📚 DataPrism Documentation</h1>
+                <p>The documentation is temporarily unavailable. Redirecting to GitHub repository...</p>
+                <a href="https://github.com/srnarasim/dataprism-apps" class="redirect-link">
+                    View Documentation on GitHub
+                </a>
+                <br>
+                <a href="/" class="back-link">← Back to DataPrism Apps</a>
+            </div>
+        </body>
+        </html>
+        EOF
+          echo "✅ Created fallback docs page"
         fi
         
         # Copy examples if they exist
