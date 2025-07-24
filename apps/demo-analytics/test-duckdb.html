@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuckDB Test</title>
+    <!-- Required for WebAssembly -->
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
+</head>
+<body>
+    <h1>DataPrism DuckDB Test</h1>
+    <div id="output"></div>
+    
+    <script type="module">
+        const output = document.getElementById('output');
+        
+        function log(message) {
+            console.log(message);
+            output.innerHTML += `<p>${message}</p>`;
+        }
+        
+        async function testDataPrism() {
+            try {
+                log('Starting DataPrism test...');
+                
+                // Try to load from CDN
+                const coreUrl = 'https://srnarasim.github.io/dataprism-core/dataprism-core.es.js';
+                log(`Loading DataPrism Core from: ${coreUrl}`);
+                
+                const module = await import(coreUrl);
+                log('✅ DataPrism Core loaded successfully');
+                log(`Available exports: ${Object.keys(module).join(', ')}`);
+                
+                const DataPrismEngine = module.DataPrismEngine || module.default?.DataPrismEngine || module.default;
+                
+                if (!DataPrismEngine) {
+                    throw new Error('DataPrismEngine not found');
+                }
+                
+                log('Creating DataPrism Engine instance...');
+                const engine = new DataPrismEngine({
+                    maxMemoryMB: 512,
+                    enableWasmOptimizations: true,
+                    queryTimeoutMs: 30000,
+                    logLevel: 'debug',
+                    duckdb: {
+                        enableWasm: true,
+                        wasmPath: '/wasm/',
+                        wasmUrl: '/wasm/dataprism_core_bg.wasm',
+                        jsUrl: '/wasm/dataprism_core.js',
+                        maxMemoryMB: 256,
+                        enableOptimizations: true
+                    }
+                });
+                
+                log('Initializing engine...');
+                await engine.initialize();
+                
+                log('Testing with simple query...');
+                const result = await engine.query('SELECT 1 as test');
+                log(`✅ Query successful: ${JSON.stringify(result)}`);
+                
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+                console.error('Full error:', error);
+            }
+        }
+        
+        testDataPrism();
+    </script>
+</body>
+</html>

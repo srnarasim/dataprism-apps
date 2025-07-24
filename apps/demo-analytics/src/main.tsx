@@ -46,13 +46,19 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter basename={import.meta.env.PROD ? "/dataprism-apps/demo-analytics" : ""}>
-          <ThemeProvider>
-            <DataPrismProvider cdnConfig={cdnConfig}>
-              <App />
-            </DataPrismProvider>
-          </ThemeProvider>
-        </BrowserRouter>
+        <ErrorBoundary>
+          <BrowserRouter basename={import.meta.env.PROD ? "/dataprism-apps/demo-analytics" : ""}>
+            <ErrorBoundary>
+              <ThemeProvider>
+                <DataPrismProvider cdnConfig={cdnConfig}>
+                  <ErrorBoundary>
+                    <App />
+                  </ErrorBoundary>
+                </DataPrismProvider>
+              </ThemeProvider>
+            </ErrorBoundary>
+          </BrowserRouter>
+        </ErrorBoundary>
       </QueryClientProvider>
     </ErrorBoundary>
   </React.StrictMode>,

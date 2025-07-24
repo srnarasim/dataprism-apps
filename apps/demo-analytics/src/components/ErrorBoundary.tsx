@@ -1,6 +1,5 @@
 import React from "react";
 import { AlertTriangle, RefreshCw, Home } from "lucide-react";
-import { Link } from "react-router-dom";
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -97,13 +96,13 @@ export class ErrorBoundary extends React.Component<
                   Try Again
                 </button>
 
-                <Link
-                  to="/"
+                <button
+                  onClick={() => window.location.href = '/'}
                   className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   <Home className="h-4 w-4 mr-2" />
                   Go Home
-                </Link>
+                </button>
               </div>
 
               {/* Help text */}
